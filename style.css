@@ -1,0 +1,81 @@
+*, *::after, *::before {
+    padding: 0;
+    margin:0;
+    box-sizing: border-box;
+}
+
+body {
+    --primary-color: royalblue;
+    --secondary-color: turquoise;
+    --light-color: beige; 
+    --dark-color: rgb(46, 45, 45);;
+    /* --padding: ; */
+    /* --max-width:; */
+    background-color: var(--dark-color); 
+}
+
+h1 {
+    background-color: var(--primary-color);
+    color: var(--light-color);
+    text-align: center;
+    padding: 2rem 0;
+    text-transform: uppercase;
+    font-weight: 500;
+}
+
+#colorName {
+    font-size: 3.5rem;
+}
+
+nav {
+    background-color: var(--light-color);
+    height: 2rem;
+    text-align: center;  
+}
+
+button {
+    color: var(--secondary-color);
+    border: none;
+    background-color: transparent;
+    height: 100%;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.2rem;
+    padding: 0 .5rem;
+    transition: all .2s ease;
+}
+
+button:hover, button[attribute="data-difficulty"]:focus, .active {
+    color: var(--light-color);
+    background-color: var(--secondary-color);
+    cursor: pointer;
+}
+
+
+#message {
+    width: 25%;
+    display: inline-block;
+    color: var(--dark-color);
+}
+
+main {
+    padding: 2rem 0;
+    display: flex;
+    max-width: 600px;
+    /* background-color: red; */
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.colorSquare {
+    width: 11rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 10%;
+    background-color: white;
+}
+
+.hide {
+    display: none;
+}
