@@ -41,6 +41,24 @@ function randomColor() {
     return randomColor;
 }
 
+function randomSquareIndex(totalNumberOfSquares) {
+    let index = Math.floor(Math.random() * totalNumberOfSquares) + 1;
+    return index; 
+}
+
+function guess(e, winningSquare) {
+    console.log("guess");
+    console.log(e.target);
+
+    if (e.target == winningSquare) {
+        message.innerHTML = "yes, you won!";
+        squares.forEach(square => square.removeEventListener("click", guess));
+    } else {
+        message.innerHTML = "keep go on";
+    }
+}
+
+
 function newGame() {
 
     console.log("new game");
@@ -49,12 +67,33 @@ function newGame() {
     // squares[0].style.backgroundColor = "red";
 
     let winningColor = randomColor();
+    console.log(winningColor);
     colorName.innerHTML = winningColor;
+    let winningSquare;
 
-    squares.forEach((square) => square.classList.contains("hide") ? square.style.backgroundColor = "transparent" : square.style.backgroundColor = randomColor());
+    if (easyButton.classList.contains("active")) {
+        console.log("easy");
+        // [...squares].forEach((square, index) => { (index < 2) ? square.style.backgroudColor = randomColor() : console.log(index)} );
+        squares[0].style.backgroundColor = randomColor();
+        squares[1].style.backgroundColor = randomColor();
+        squares[2].style.backgroundColor = randomColor();
+        winningSquare = squares[randomSquareIndex(3)];
+
+    } else {
+        console.log("hard");
+        squares.forEach((square) => square.style.backgroundColor = randomColor());
+        winningSquare = squares[randomSquareIndex(6)];
+    }
+
+    winningSquare.style.backgroundColor = winningColor;
+    console.log(winningSquare);
+
+    squares.forEach(square => square.addEventListener("click", guess(event, winningSquare), false)); // jak do event funkce poslat variable z fce ???? 
+
+    // squares.forEach((square) => square.classList.contains("hide") ? square.style.backgroundColor = "transparent" : square.style.backgroundColor = randomColor());
 
 
-    
+
 }
 
 
@@ -63,16 +102,17 @@ function newGame() {
 
 // --------------------- RESET ------------------
 function resetGame() {
-
-
     newGame();
 }
 
 
 // ----------------konec reset -----------------
 
-
-
 easyButton.addEventListener("click", changeDifficulty);
 hardButton.addEventListener("click", changeDifficulty);
 resetButton.addEventListener("click", resetGame);
+
+
+// initial call for new game:
+
+newGame();
