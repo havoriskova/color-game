@@ -79,3 +79,7 @@ main {
 .hide {
     display: none;
 }
+
+.winning {
+    border: solid red 2px;
+}

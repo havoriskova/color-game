@@ -10,7 +10,7 @@ function changeDifficulty(e) {
 
     let target = e.target;
     let difficulty = target.dataset.difficulty;
-    console.log(difficulty);
+    // console.log(difficulty);
 
     if (difficulty == "easy") {
         easyButton.classList.add("active");
@@ -42,26 +42,26 @@ function randomColor() {
 }
 
 function randomSquareIndex(totalNumberOfSquares) {
-    let index = Math.floor(Math.random() * totalNumberOfSquares) + 1;
+    let index = Math.floor(Math.random() * totalNumberOfSquares);
     return index; 
 }
 
-function guess(e, winningSquare) {
+function guess(event, winningSquare) {
     console.log("guess");
-    console.log(e.target);
+    // console.log(event);
 
-    if (e.target == winningSquare) {
-        message.innerHTML = "yes, you won!";
-        squares.forEach(square => square.removeEventListener("click", guess));
-    } else {
-        message.innerHTML = "keep go on";
-    }
+    // if (e.target == winningSquare) {
+    //     message.innerHTML = "yes, you won!";
+    //     squares.forEach(square => square.removeEventListener("click", guess));
+    // } else {
+    //     message.innerHTML = "keep go on";
+    // }
 }
 
 
 function newGame() {
 
-    console.log("new game");
+    // console.log("new game");
 
     // console.log(squares);
     // squares[0].style.backgroundColor = "red";
@@ -70,9 +70,10 @@ function newGame() {
     console.log(winningColor);
     colorName.innerHTML = winningColor;
     let winningSquare;
+    // winningSquare.classList.remove("winning");
 
     if (easyButton.classList.contains("active")) {
-        console.log("easy");
+        // console.log("easy");
         // [...squares].forEach((square, index) => { (index < 2) ? square.style.backgroudColor = randomColor() : console.log(index)} );
         squares[0].style.backgroundColor = randomColor();
         squares[1].style.backgroundColor = randomColor();
@@ -80,15 +81,17 @@ function newGame() {
         winningSquare = squares[randomSquareIndex(3)];
 
     } else {
-        console.log("hard");
+        // console.log("hard");
         squares.forEach((square) => square.style.backgroundColor = randomColor());
         winningSquare = squares[randomSquareIndex(6)];
     }
 
     winningSquare.style.backgroundColor = winningColor;
-    console.log(winningSquare);
+    winningSquare.classList.add("winning");
+    // console.log(winningSquare);
 
     squares.forEach(square => square.addEventListener("click", guess(event, winningSquare), false)); // jak do event funkce poslat variable z fce ???? 
+    // celou funkci do logiky ? : - squares.forEach((square) => square.
 
     // squares.forEach((square) => square.classList.contains("hide") ? square.style.backgroundColor = "transparent" : square.style.backgroundColor = randomColor());
 
