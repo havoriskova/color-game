@@ -25,7 +25,7 @@ function changeDifficulty(e) {
         squares.forEach(square => square.classList.remove("hide"));
     }
 
-    newGame();
+    resetGame();
 }
 
 
@@ -46,17 +46,17 @@ function randomSquareIndex(totalNumberOfSquares) {
     return index; 
 }
 
-function guess(event, winningSquare) {
-    console.log("guess");
-    // console.log(event);
+// function guess(event, winningSquare) {
+//     console.log("guess");
+//     // console.log(event);
 
-    // if (e.target == winningSquare) {
-    //     message.innerHTML = "yes, you won!";
-    //     squares.forEach(square => square.removeEventListener("click", guess));
-    // } else {
-    //     message.innerHTML = "keep go on";
-    // }
-}
+//     // if (e.target == winningSquare) {
+//     //     message.innerHTML = "yes, you won!";
+//     //     squares.forEach(square => square.removeEventListener("click", guess));
+//     // } else {
+//     //     message.innerHTML = "keep go on";
+//     // }
+// }
 
 
 function newGame() {
@@ -90,7 +90,19 @@ function newGame() {
     winningSquare.classList.add("winning");
     // console.log(winningSquare);
 
-    squares.forEach(square => square.addEventListener("click", guess(event, winningSquare), false)); // jak do event funkce poslat variable z fce ???? 
+    squares.forEach(square => square.addEventListener("click", (e) => {
+        // console.log(e.target); 
+        // console.log(winningSquare);
+        // console.log(e.target == winningSquare);
+
+        if (e.target == winningSquare) {
+            message.innerHTML = "yes, you won!";
+            squares.forEach((square) => square.classList.add("noPointerEvents"));
+        } else {
+            message.innerHTML = "keep go on";
+        }
+    
+    })); 
     // celou funkci do logiky ? : - squares.forEach((square) => square.
 
     // squares.forEach((square) => square.classList.contains("hide") ? square.style.backgroundColor = "transparent" : square.style.backgroundColor = randomColor());
@@ -105,6 +117,9 @@ function newGame() {
 
 // --------------------- RESET ------------------
 function resetGame() {
+    squares.forEach((square) => square.classList.remove("noPointerEvents"));
+    squares.forEach((square) => square.classList.remove("winning"));
+    message.innerHTML = "";
     newGame();
 }
 

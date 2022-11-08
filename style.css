@@ -83,3 +83,7 @@ main {
 .winning {
     border: solid red 2px;
 }
+
+.noPointerEvents {
+    pointer-events: none;
+}
