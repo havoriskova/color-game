@@ -21,6 +21,7 @@ h1 {
     padding: 2rem 0;
     text-transform: uppercase;
     font-weight: 500;
+    transition: background-color .4s ease;
 }
 
 #colorName {
@@ -75,6 +76,7 @@ main {
     border-radius: 10%;
     background-color: white;
     cursor: pointer;
+    transition: background-color .4s ease;
 }
 
 .hide {

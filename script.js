@@ -4,6 +4,7 @@ const resetButton = document.querySelector("#reset");
 const easyButton = document.querySelector(`[data-difficulty="easy"]`);
 const hardButton = document.querySelector(`[data-difficulty="hard"]`);
 const squares = document.querySelectorAll(".colorSquare");
+const header = document.querySelector("h1");
 
 
 function changeDifficulty(e) {
@@ -64,13 +65,12 @@ function newGame() {
     // console.log("new game");
 
     // console.log(squares);
-    // squares[0].style.backgroundColor = "red";
 
     let winningColor = randomColor();
-    console.log(winningColor);
+    // console.log(winningColor);
     colorName.innerHTML = winningColor;
     let winningSquare;
-    // winningSquare.classList.remove("winning");
+  
 
     if (easyButton.classList.contains("active")) {
         // console.log("easy");
@@ -98,12 +98,15 @@ function newGame() {
         if (e.target == winningSquare) {
             message.innerHTML = "yes, you won!";
             squares.forEach((square) => square.classList.add("noPointerEvents"));
+            squares.forEach((square)=> square.style.backgroundColor = winningColor);
+            header.style.backgroundColor = winningColor;
         } else {
             message.innerHTML = "keep go on";
+            e.target.style.backgroundColor = "transparent";
         }
     
     })); 
-    // celou funkci do logiky ? : - squares.forEach((square) => square.
+
 
     // squares.forEach((square) => square.classList.contains("hide") ? square.style.backgroundColor = "transparent" : square.style.backgroundColor = randomColor());
 
@@ -120,6 +123,7 @@ function resetGame() {
     squares.forEach((square) => square.classList.remove("noPointerEvents"));
     squares.forEach((square) => square.classList.remove("winning"));
     message.innerHTML = "";
+    header.style.backgroundColor = "var(--primary-color)";
     newGame();
 }
 
