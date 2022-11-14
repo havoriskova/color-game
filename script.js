@@ -80,17 +80,16 @@ function newGame() {
         squares[1].style.backgroundColor = randomColor();
         squares[2].style.backgroundColor = randomColor();
         winningSquare = squares[randomSquareIndex(3)];
-        winningSquare.style.backgroundColor = winningColor;
-        winningSquare.classList.add("winning");
+        
 
     } else {
         // console.log("hard");
         squares.forEach((square) => square.style.backgroundColor = randomColor());
         winningSquare = squares[randomSquareIndex(6)];
-        winningSquare.style.backgroundColor = winningColor;
-        winningSquare.classList.add("winning");
     }
 
+    winningSquare.style.backgroundColor = winningColor;
+    // winningSquare.classList.add("winning");
 
     // console.log(winningSquare);
 
@@ -99,24 +98,6 @@ function newGame() {
 
 }
 
-// event osamotě, bez funkce
-
- squares.forEach(square => square.addEventListener("click", (e) => {
-        // console.log(e.target); 
-        // console.log(winningSquare);
-        // console.log(e.target == winningSquare);
-
-        if (e.target == winningSquare) {
-            message.innerHTML = "yes, you won!";
-            squares.forEach((square) => square.classList.add("noPointerEvents"));
-            squares.forEach((square)=> square.style.backgroundColor = winningColor);
-            header.style.backgroundColor = winningColor;
-        } else {
-            message.innerHTML = "keep go on";
-            e.target.style.backgroundColor = "transparent";
-        }
-    
-    })); 
 
 
 // ----------------- konec game --------------
@@ -134,9 +115,28 @@ function resetGame() {
 
 // ----------------konec reset -----------------
 
+//----------- event listenery ----------------
+
 easyButton.addEventListener("click", changeDifficulty);
 hardButton.addEventListener("click", changeDifficulty);
 resetButton.addEventListener("click", resetGame);
+
+squares.forEach(square => square.addEventListener("click", (e) => {
+        // console.log(e.target); 
+        // console.log(winningSquare);
+        // console.log(e.target == winningSquare);
+
+        if (e.target == winningSquare) {
+            message.innerHTML = "yes, you won!";
+            squares.forEach((square) => square.classList.add("noPointerEvents"));
+            squares.forEach((square)=> square.style.backgroundColor = winningColor);
+            header.style.backgroundColor = winningColor;
+        } else {
+            message.innerHTML = "keep go on";
+            e.target.style.backgroundColor = "transparent";
+        }
+    
+    })); 
 
 
 // initial call for new game:
