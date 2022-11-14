@@ -58,18 +58,19 @@ function randomSquareIndex(totalNumberOfSquares) {
 //     //     message.innerHTML = "keep go on";
 //     // }
 // }
-
+let winningSquare;
+let winningColor;
 
 function newGame() {
 
-    // console.log("new game");
+    console.log("new game");
 
     // console.log(squares);
 
-    let winningColor = randomColor();
-    // console.log(winningColor);
+    winningColor = randomColor();
+    console.log(winningColor);
     colorName.innerHTML = winningColor;
-    let winningSquare;
+
   
 
     if (easyButton.classList.contains("active")) {
@@ -79,18 +80,28 @@ function newGame() {
         squares[1].style.backgroundColor = randomColor();
         squares[2].style.backgroundColor = randomColor();
         winningSquare = squares[randomSquareIndex(3)];
+        winningSquare.style.backgroundColor = winningColor;
+        winningSquare.classList.add("winning");
 
     } else {
         // console.log("hard");
         squares.forEach((square) => square.style.backgroundColor = randomColor());
         winningSquare = squares[randomSquareIndex(6)];
+        winningSquare.style.backgroundColor = winningColor;
+        winningSquare.classList.add("winning");
     }
 
-    winningSquare.style.backgroundColor = winningColor;
-    winningSquare.classList.add("winning");
+
     // console.log(winningSquare);
 
-    squares.forEach(square => square.addEventListener("click", (e) => {
+
+    // squares.forEach((square) => square.classList.contains("hide") ? square.style.backgroundColor = "transparent" : square.style.backgroundColor = randomColor());
+
+}
+
+// event osamotě, bez funkce
+
+ squares.forEach(square => square.addEventListener("click", (e) => {
         // console.log(e.target); 
         // console.log(winningSquare);
         // console.log(e.target == winningSquare);
@@ -108,22 +119,15 @@ function newGame() {
     })); 
 
 
-    // squares.forEach((square) => square.classList.contains("hide") ? square.style.backgroundColor = "transparent" : square.style.backgroundColor = randomColor());
-
-
-
-}
-
-
 // ----------------- konec game --------------
 
 
 // --------------------- RESET ------------------
 function resetGame() {
+    header.style.backgroundColor = "var(--primary-color)";
+    message.innerHTML = "";
     squares.forEach((square) => square.classList.remove("noPointerEvents"));
     squares.forEach((square) => square.classList.remove("winning"));
-    message.innerHTML = "";
-    header.style.backgroundColor = "var(--primary-color)";
     newGame();
 }
 
