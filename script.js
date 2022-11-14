@@ -127,12 +127,12 @@ squares.forEach(square => square.addEventListener("click", (e) => {
         // console.log(e.target == winningSquare);
 
         if (e.target == winningSquare) {
-            message.innerHTML = "yes, you won!";
+            message.innerHTML = "You won!";
             squares.forEach((square) => square.classList.add("noPointerEvents"));
             squares.forEach((square)=> square.style.backgroundColor = winningColor);
             header.style.backgroundColor = winningColor;
         } else {
-            message.innerHTML = "keep go on";
+            message.innerHTML = "Keep go on";
             e.target.style.backgroundColor = "transparent";
         }
     

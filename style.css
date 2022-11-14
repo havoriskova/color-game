@@ -90,3 +90,14 @@ main {
 .noPointerEvents {
     pointer-events: none;
 }
+
+
+@media (max-width: 450px) {
+    #colorName {
+        font-size: 2rem;
+    }
+
+    nav {
+        height: 3rem;
+    }
+}
